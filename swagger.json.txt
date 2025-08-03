@@ -1,0 +1,186 @@
+{
+    "swagger": "2.0",
+    "basePath": "/",
+    "paths": {
+        "/diagnostics/dns": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "Perform DNS lookup",
+                "operationId": "post_dns_lookup",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/DNS%20Request"
+                        }
+                    }
+                ],
+                "tags": [
+                    "diagnostics"
+                ]
+            }
+        },
+        "/diagnostics/key": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "Generate a new API key",
+                "operationId": "post_generate_api_key",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/API%20Key%20Request"
+                        }
+                    }
+                ],
+                "tags": [
+                    "diagnostics"
+                ]
+            }
+        },
+        "/diagnostics/logs": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "View logs of API keys",
+                "operationId": "get_logs",
+                "tags": [
+                    "diagnostics"
+                ]
+            }
+        },
+        "/diagnostics/ping": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "Ping a target",
+                "operationId": "post_ping",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Ping%20Request"
+                        }
+                    }
+                ],
+                "tags": [
+                    "diagnostics"
+                ]
+            }
+        },
+        "/diagnostics/traceroute": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "Perform traceroute",
+                "operationId": "post_traceroute",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Traceroute%20Request"
+                        }
+                    }
+                ],
+                "tags": [
+                    "diagnostics"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Network Diagnostic API",
+        "version": "1.0",
+        "description": "An API for network diagnostics."
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "diagnostics",
+            "description": "Network Diagnostic Tools"
+        }
+    ],
+    "definitions": {
+        "API Key Request": {
+            "properties": {},
+            "type": "object"
+        },
+        "Ping Request": {
+            "required": [
+                "target"
+            ],
+            "properties": {
+                "target": {
+                    "type": "string",
+                    "description": "Target to ping",
+                    "example": "8.8.8.8"
+                }
+            },
+            "type": "object"
+        },
+        "DNS Request": {
+            "required": [
+                "domain"
+            ],
+            "properties": {
+                "domain": {
+                    "type": "string",
+                    "description": "Domain to resolve",
+                    "example": "www.google.com"
+                }
+            },
+            "type": "object"
+        },
+        "Traceroute Request": {
+            "required": [
+                "target"
+            ],
+            "properties": {
+                "target": {
+                    "type": "string",
+                    "description": "Target to traceroute",
+                    "example": "8.8.8.8"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }
+    }
+}

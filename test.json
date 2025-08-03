@@ -1,0 +1,26 @@
+[
+    {
+
+        "order": 1,
+        "name": "TEST2",
+        "enabled": true,
+
+        "description": "AAA",
+
+        "trigger": {
+            "conditions": [
+                {
+                    "conditionType": "IP",
+                    "operator": "CONTAINS",
+                    "ips": [
+                        "12.12.12.15"
+                    ]
+                }
+            ],
+            "operator": "AND"
+        },
+        "action": {
+            "type": "BYPASS"
+        }
+    }
+]
